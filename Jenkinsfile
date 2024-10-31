@@ -3,8 +3,10 @@ pipeline {
     stages {
         stage('First Stages'){
             steps {
-                sh 'sudo mkdir testdir'
+                sh 'sudo docker rm -f $(docker ps -aq)'
+                sh 'docker rmi -f $(docker images)'
             }
         }
+        
     }
 }
