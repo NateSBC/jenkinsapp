@@ -6,3 +6,5 @@ pipeline {
                 sh 'sudo mkdir testdir'
             }
         }
+    }
+}
