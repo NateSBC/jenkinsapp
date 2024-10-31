@@ -3,6 +3,6 @@ pipeline {
     stages {
         stage('First Stages'){
             steps {
-                sh 'mkdir testdir'
+                sh 'sudo mkdir testdir'
             }
         }
