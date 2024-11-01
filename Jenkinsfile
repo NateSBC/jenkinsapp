@@ -8,14 +8,13 @@ pipeline {
             }
         }
 
-        stage('Second Stage'){
-
         stage('Create Network') {
 
             steps {
                 sh 'docker network create new-network || true'
             }
-        }        
+        }
+               
 
         stage('Build Image'){
             steps {
@@ -23,11 +22,7 @@ pipeline {
                 sh 'docker build -t mynginx -f ./Task1/Dockerfile.nginx .'
 
             }       
-        }
-
-        stage('Third Stage'){
-            steps {
-                sh 'docker run -d -p 80:80 --name flask flask'
+        }'
 
 
         stage('Scan'){
@@ -47,22 +42,7 @@ pipeline {
             }       
         }
 
-        stage('Second Stage'){
-            steps {
-                sh 'docker build -t flask Task1'
-
-            }       
-        }
-        stage('Third Stage'){
-            steps {
-                sh 'docker run -d -p 80:5500 --name flask flask'
-
-            }       
-        }
-
-
-
-        stage ('UnitTest'){
+        stage('UnitTest'){
             steps {
                 sh '''
                 python3 -m venv .venv
@@ -77,3 +57,4 @@ pipeline {
 
     }
 }
+        
