@@ -12,6 +12,15 @@ pipeline {
                 sh 'docker network create new-network || true'
             }
         }        
+
+        stage('Build Image'){
+            steps {
+                sh 'docker build -t flask Task1'
+                sh 'docker build -t mynginx -f ./Test1/Dockerfile.nginx .'
+
+            }       
+        }
+
         stage('Scan'){
             steps {
                 sh 'trivy image -f json -o results.json flask'
@@ -21,13 +30,6 @@ pipeline {
             steps {
                 archiveArtifacts artifacts: 'results.json', followSymlinks: false
             }
-        }
-        stage('Build Image'){
-            steps {
-                sh 'docker build -t flask Task1'
-                sh 'docker build -t mynginx -f ./Test1/Dockerfile.nginx .'
-
-            }       
         }
         stage('Run Container'){
             steps {
