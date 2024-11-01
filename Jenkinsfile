@@ -48,7 +48,7 @@ pipeline {
                 python3 -m venv .venv
                 . .venv/bin/activate
                 pip install -r ./Task1/requirements.txt
-                python3 -m unittest test_jenkins.py
+                python3 -m unittest ./Task1/test_jenkins.py
                 deactivate
             '''
             }
