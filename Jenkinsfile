@@ -7,7 +7,11 @@ pipeline {
                 sh 'docker rmi -f $(docker images) || true'
             }
         }
+
+        stage('Second Stage'){
+
         stage('Create Network') {
+
             steps {
                 sh 'docker network create new-network || true'
             }
@@ -20,6 +24,11 @@ pipeline {
 
             }       
         }
+
+        stage('Third Stage'){
+            steps {
+                sh 'docker run -d -p 80:80 --name flask flask'
+
 
         stage('Scan'){
             steps {
@@ -37,6 +46,20 @@ pipeline {
                 sh 'docker run -d -p 80:80 --name mynginx --network new-network mynginx'
             }       
         }
+
+        stage('Second Stage'){
+            steps {
+                sh 'docker build -t flask Task1'
+
+            }       
+        }
+        stage('Third Stage'){
+            steps {
+                sh 'docker run -d -p 80:5500 --name flask flask'
+
+            }       
+        }
+
 
 
         stage ('UnitTest'){
