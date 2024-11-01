@@ -33,7 +33,7 @@ pipeline {
         }
         stage('Run Container'){
             steps {
-                sh 'docker run -d -p 80:5500 --name flask flask'
+                sh 'docker run -d --name flask --network new-network flask-app:latest'
                 sh 'docker run -d -p 80:80 --name mynginx --network new-network mynginx:latest'
             }       
         }
