@@ -15,7 +15,7 @@ pipeline {
         }
         stage('Third Stage'){
             steps {
-                sh 'docker run -d -p 80:80 --name flask flask'
+                sh 'docker run -d -p 80:5500 --name flask flask'
 
             }       
         }
