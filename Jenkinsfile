@@ -18,7 +18,7 @@ pipeline {
 
         stage('Build Image'){
             steps {
-                sh 'docker build -t flask Task1'
+                sh 'docker build -t flask-app Task1'
                 sh 'docker build -t mynginx -f ./Task1/Dockerfile.nginx .'
 
             }       
@@ -37,7 +37,7 @@ pipeline {
         }
         stage('Run Container'){
             steps {
-                sh 'docker run -d --name flask --network new-network flask:latest'
+                sh 'docker run -d --name flask-app --network new-network flask-app:latest'
                 sh 'docker run -d -p 80:80 --name mynginx --network new-network mynginx'
             }       
         }
