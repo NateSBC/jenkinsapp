@@ -19,8 +19,12 @@ pipeline {
 
         stage('Trivy'){
             steps {
-                sh 'trivy image --severity HIGH,CRITICAL flask'
                 sh 'trivy image -f json -o results.json flask'
+            }
+        }
+         stage('Archive Artifact'){
+            steps {
+                archiveArtifacts artifacts: 'results.json', followSymlinks: false
             }
         }
 
@@ -46,10 +50,6 @@ pipeline {
             }
         }
 
-        stage('Archive Artifact'){
-            steps {
-                archiveArtifacts artifacts: 'results.json', followSymlinks: false
-            }
-        }
+
     }
 }
