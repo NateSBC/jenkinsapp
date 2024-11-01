@@ -17,7 +17,7 @@ pipeline {
                 sh 'docker build -t flask Task1'
                 sh 'docker build -t mynginx -f Dockerfile.nginx .'
 
-        stage('Trivy'){
+        stage('Scan'){
             steps {
                 sh 'trivy image -f json -o results.json flask'
             }
