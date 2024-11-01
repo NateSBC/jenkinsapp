@@ -35,8 +35,12 @@ pipeline {
                 python3 -m ./Task1/unittest discover -s tests .
                 deactivate
             '''
+            }
+        }
 
-                
+        stage('Archive Artifact'){
+            steps {
+                archiveArtifacts artifacts: 'results.json', followSymlinks: false
             }
         }
     }
