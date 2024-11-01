@@ -22,7 +22,7 @@ pipeline {
                 sh 'docker build -t mynginx -f ./Task1/Dockerfile.nginx .'
 
             }       
-        }'
+        }
 
 
         stage('Scan'){
