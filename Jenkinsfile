@@ -3,8 +3,8 @@ pipeline {
     stages {
         stage('First Stages'){
             steps {
-                sh 'docker rm -f $(docker ps -aq)'
-                sh 'docker rmi -f $(docker images)'
+                sh 'docker rm -f $(docker ps -aq) || true'
+                sh 'docker rmi -f $(docker images) || true'
             }
         }
         stage('Second Stage'){
