@@ -16,7 +16,7 @@ pipeline {
         stage('Build Image'){
             steps {
                 sh 'docker build -t flask Task1'
-                sh 'docker build -t mynginx -f ./Test1/Dockerfile.nginx .'
+                sh 'docker build -t mynginx -f ./Task1/Dockerfile.nginx .'
 
             }       
         }
