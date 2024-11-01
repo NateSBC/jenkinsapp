@@ -7,9 +7,17 @@ pipeline {
                 sh 'docker rmi -f $(docker images) || true'
             }
         }
+        stage('Create Network') {
+            steps {
+                sh 'docker network create new-network || true'
+            }
+        }
         stage('Build Image'){
             steps {
                 sh 'docker build -t flask Task1'
+                sh 'docker build -t mynginx -f Dockerfile.nginx .'
+
+
 
             }       
         }
