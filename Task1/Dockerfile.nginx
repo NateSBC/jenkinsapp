@@ -1,3 +1,4 @@
 # Use Python 3.6 or later as a base image
 FROM python:latest
+FROM nginx:alpine
 COPY ./Task1/nginx.conf /etc/nginx/nginx.conf
