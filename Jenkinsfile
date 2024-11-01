@@ -17,16 +17,6 @@ pipeline {
                 sh 'docker build -t flask Task1'
                 sh 'docker build -t mynginx -f Dockerfile.nginx .'
 
-
-
-            }       
-        }
-        stage('Run Container'){
-            steps {
-                sh 'docker run -d -p 80:5500 --name flask flask'
-
-            }       
-        }
         stage('Trivy'){
             steps {
                 sh 'trivy image --severity HIGH,CRITICAL flask'
@@ -34,13 +24,23 @@ pipeline {
             }
         }
 
+            }       
+        }
+        stage('Run Container'){
+            steps {
+                sh 'docker run -d -p 80:5500 --name flask flask'
+                sh 'docker run -d -p 80:80 --name mynginx --network new-network mynginx:latest'
+            }       
+        }
+
+
         stage ('UnitTest'){
             steps {
                 sh '''
                 python3 -m venv .venv
                 . .venv/bin/activate
                 pip install -r ./Task1/requirements.txt
-                python3 -m unittest discover -s /Task1/tests .
+                python3 -m unittest discover -s ./Task1/tests .
                 deactivate
             '''
             }
