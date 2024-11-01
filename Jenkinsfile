@@ -32,7 +32,7 @@ pipeline {
                 python3 -m venv .venv
                 . .venv/bin/activate
                 pip install -r ./Task1/requirements.txt
-                python3 -m unittest discover -s tests .
+                python3 -m unittest discover -s /Task1/tests .
                 deactivate
             '''
             }
