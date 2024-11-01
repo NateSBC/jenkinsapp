@@ -27,7 +27,7 @@ pipeline {
 
         stage('Scan'){
             steps {
-                sh 'trivy image -f json -o results.json flask'
+                sh 'trivy image -f json -o results.json flask-app'
             }
         }
          stage('Archive Artifact'){
