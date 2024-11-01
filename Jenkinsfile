@@ -21,7 +21,7 @@ pipeline {
         }
         stage('Trivy'){
             steps {
-                sh 'trivy image flask'
+                sh 'trivy image --severity HIGH,CRITICAL flask'
                 sh 'trivy image -f json -o results.json flask'
             }
         }
